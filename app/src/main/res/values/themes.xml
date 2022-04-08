@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="splashScreenTheme" parent="Theme.Spica">
+    <style name="splashScreenTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:windowBackground">
             @drawable/launcher_logo
         </item>
