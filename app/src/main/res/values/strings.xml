@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">Spica</string>
+    <string name="app_name">Agencia de Viajes</string>
     <string name="textview">TextView</string>
+    <string name="available_travels">Viajes Disponibles</string>
+    <string name="search">Buscador</string>
+    <string name="item_title">Titulo del viaje</string>
 </resources>

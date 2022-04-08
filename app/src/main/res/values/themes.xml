@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Spica" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -12,5 +12,20 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowSplashScreenAnimatedIcon">
+            @drawable/ic_logo
+        </item>
+        <item name="android:windowSplashScreenBackground">
+            @color/black
+        </item>
+        <item name="android:windowSplashScreenIconBackgroundColor">
+             @color/black
+        </item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
+<!--        <item name="android:statusBarColor">@color/white</item>-->
     </style>
 </resources>

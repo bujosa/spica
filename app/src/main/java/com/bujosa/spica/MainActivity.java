@@ -25,11 +25,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_Spica);
         setContentView(R.layout.activity_main);
-
         gridView = findViewById(R.id.gridView);
         gridView.setAdapter(new MenuAdapter(Menu.generateMenu(), this));
-
     }
 }
 
