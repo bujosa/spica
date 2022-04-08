@@ -4,7 +4,6 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.SharedPreferences;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +67,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
         return travelList.size();
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textView;
@@ -92,6 +92,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
                 likeClick(travel, button, position);
             });
         }
+
     }
 
     private void likeClick(Travel travel, Button button, int position){

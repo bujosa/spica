@@ -16,4 +16,10 @@
     <string name="date_end_label">Fecha de salida</string>
     <string name="date_end">fecha de salida</string>
     <string name="favorite_label">Seleccionar</string>
+    <string name="filter">Busqueda Avanzada</string>
+    <string name="min_price_title">Precio minimo:</string>
+    <string name="min_price_edit_text">0</string>
+    <string name="max_price_edit_text">9999</string>
+    <string name="apply_filter_button">Filtrar</string>
+    <string name="cancel_filter_button">Cancelar</string>
 </resources>
