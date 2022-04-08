@@ -1,14 +1,9 @@
 package com.bujosa.spica.entity;
-import android.content.SharedPreferences;
-import android.util.Log;
-
-import com.bujosa.spica.MainActivity;
-import com.bujosa.spica.R;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import com.squareup.picasso.Picasso;
 
-public class Travel {
+public class Travel implements Serializable {
     private String title;
     private String description;
     private String key;

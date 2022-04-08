@@ -1,13 +1,13 @@
 package com.bujosa.spica.entity;
 
 import com.bujosa.spica.FavoritesListTravelActivity;
-import com.bujosa.spica.MainActivity;
 import com.bujosa.spica.R;
 import com.bujosa.spica.TravelActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class Menu {
     private String description;
     private int resourceImageView;

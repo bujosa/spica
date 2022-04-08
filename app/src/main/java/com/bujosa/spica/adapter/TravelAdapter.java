@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bujosa.spica.R;
 
+import com.bujosa.spica.TravelDetailActivity;
 import com.bujosa.spica.entity.Travel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -79,7 +80,9 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
             textView=itemView.findViewById(R.id.itemTextView);
             imageView=itemView.findViewById(R.id.itemImageView);
             imageView.setOnClickListener(view -> {
-
+                int position = getAdapterPosition();
+                Travel travel = travelList.get(position);
+                moveToDetail(travel);
             });
             button.setOnClickListener(view -> {
                 int position = getAdapterPosition();
@@ -97,7 +100,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
         Type type = new TypeToken<ArrayList<Travel>>() {}.getType();
         List<Travel> travels = gson.fromJson(json, type);
         if (travels == null){
-            travels = new ArrayList<Travel>();
+            travels = new ArrayList<>();
         }
 
         if(travel.getFavorite()){
@@ -149,4 +152,9 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
         editor.apply();
     }
 
+    private void moveToDetail(Travel travel){
+        Intent intent = new Intent(context, TravelDetailActivity.class);
+        intent.putExtra("Travel", travel);
+        context.startActivity(intent);
+    }
 }

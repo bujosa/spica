@@ -1,24 +1,18 @@
 package com.bujosa.spica;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.bujosa.spica.adapter.MenuAdapter;
 import com.bujosa.spica.entity.Menu;
 import com.bujosa.spica.entity.Travel;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,54 +28,16 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE );
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(Travel.generateTravels());
-        editor.putString("travels",json);
-        editor.apply();
-
+        String getTravelsJson = sharedPreferences.getString("travels", null);
+        Type type = new TypeToken<ArrayList<Travel>>() {}.getType();
+        List<Travel> travels = gson.fromJson(getTravelsJson, type);
+        if(travels == null){
+            String json = gson.toJson(Travel.generateTravels());
+            editor.putString("travels",json);
+            editor.apply();
+        }
         gridView = findViewById(R.id.gridView);
         gridView.setAdapter(new MenuAdapter(Menu.generateMenu(), this));
     }
 }
 
-class MenuAdapter extends BaseAdapter {
-
-    List<Menu> menus;
-    Context context;
-
-    public MenuAdapter(List<Menu> menus, Context context){
-        this.menus = menus;
-        this.context = context;
-    }
-
-    @Override
-    public int getCount() {
-        return menus.size();
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return menus.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return menus.get(i).hashCode();
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        final Menu menu = menus.get(i);
-        if(view == null){
-            view = LayoutInflater.from(context).inflate(R.layout.menu_item, viewGroup, false);
-        }
-        CardView cardView = view.findViewById(R.id.cardView);
-        TextView textView = view.findViewById(R.id.textView);
-        ImageView imageView = view.findViewById(R.id.imageView);
-
-        textView.setText(menu.getDescription());
-        imageView.setImageResource(menu.getResourceImageView());
-        cardView.setOnClickListener(view1 -> context.startActivity(new Intent(context, menu.getClase())));
-
-        return view;
-    }
-}

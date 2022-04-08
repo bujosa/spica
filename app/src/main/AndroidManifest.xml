@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Spica">
         <activity
-            android:name=".TravelDetail"
+            android:name=".TravelDetailActivity"
             android:exported="false" />
         <activity
             android:name=".TravelActivity"

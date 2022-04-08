@@ -9,27 +9,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
         android:padding="10dp">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:gravity="center"
+            android:text="@string/textview"/>
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
             android:contentDescription="@string/textview"
             android:scaleType="centerInside"
             tools:ignore="ImageContrastCheck,ImageContrastCheck"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:textSize="23sp"
-            android:gravity="center"
-            android:text="@string/textview"/>
 
     </LinearLayout>
 
