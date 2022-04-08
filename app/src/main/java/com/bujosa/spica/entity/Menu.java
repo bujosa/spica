@@ -2,6 +2,7 @@ package com.bujosa.spica.entity;
 
 import com.bujosa.spica.MainActivity;
 import com.bujosa.spica.R;
+import com.bujosa.spica.TravelActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class Menu {
 
     public static List<Menu> generateMenu(){
         List<Menu> menu = new ArrayList<>();
-        menu.add(new Menu("Viajes Disponibles", R.drawable.travel, MainActivity.class));
+        menu.add(new Menu("Viajes Disponibles", R.drawable.travel, TravelActivity.class));
         menu.add(new Menu("Viajes Seleccionados", R.drawable.travel_selection, MainActivity.class));
         return menu;
     }
