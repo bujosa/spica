@@ -1,7 +1,12 @@
 package com.bujosa.spica;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -19,11 +24,18 @@ import java.util.List;
 public class FavoritesListTravelActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
+    ImageButton imageButton;
+    TextView textView;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.available_travels);
+        imageButton=findViewById(R.id.imageButton);
+        textView=findViewById(R.id.textView2);
+        textView.setText("Lugares Favoritos");
+        imageButton.setVisibility(View.INVISIBLE);
         recyclerView=findViewById(R.id.listRecyclerView);
         SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
         Gson gson = new Gson();

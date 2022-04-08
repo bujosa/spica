@@ -94,7 +94,12 @@ public class TravelActivity extends AppCompatActivity {
         List<Travel> resultTravel =  new ArrayList<>();
         resultTravel = matchCriteria(resultTravel, travels);
         recyclerView = findViewById(R.id.listRecyclerView);
-        recyclerView.setAdapter(new TravelAdapter(resultTravel, this, false));
+        if(resultTravel.size() == travels.size()){
+            recyclerView.setAdapter(new TravelAdapter(resultTravel, this, true));
+        }else{
+            recyclerView.setAdapter(new TravelAdapter(resultTravel, this, false));
+        }
+
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
     }
 }
