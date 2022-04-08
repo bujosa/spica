@@ -3,6 +3,7 @@ package com.bujosa.spica;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.widget.GridView;
 
 import com.bujosa.spica.adapter.MenuAdapter;
@@ -21,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_Spica);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE );

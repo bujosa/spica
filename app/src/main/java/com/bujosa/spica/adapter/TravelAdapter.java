@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.SharedPreferences;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,9 +110,9 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
             for (int i = 0; i < travels.size(); i++) {
                 Travel currentTravel = travels.get(i);
                 if(currentTravel.getKey().equals(travel.getKey())){
-                    travels.remove(position);
+                    travels.remove(i);
                     if(!global){
-                        travelList.remove(position);
+                        travelList.remove(i);
                         notifyItemRemoved(position);
                         notifyItemRangeChanged(position,travelList.size());
                     }
