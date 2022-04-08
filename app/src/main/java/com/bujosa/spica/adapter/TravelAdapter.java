@@ -1,7 +1,9 @@
 package com.bujosa.spica.adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+import android.content.SharedPreferences;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,22 +17,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bujosa.spica.R;
 
 import com.bujosa.spica.entity.Travel;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder>{
+    private final List<Travel> travelList;
+    private final Context context;
+    private final Boolean global;
 
-    private List<Travel> travelList;
-
-    public TravelAdapter(List<Travel> travelList){
+    public TravelAdapter(List<Travel> travelList, Context context, Boolean global){
         this.travelList = travelList;
+        this.context = context;
+        this.global = global;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context= parent.getContext();
+        Context context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View travelView = layoutInflater.inflate(R.layout.list_element, parent, false);
         return new ViewHolder(travelView);
@@ -41,9 +50,9 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
         Travel travel = travelList.get(position);
         holder.textView.setText(travel.getTitle());
         if(travel.getFavorite()) {
-            holder.button.setBackground(Drawable.createFromPath("@drawable/ic_favorite_red_24"));
+            holder.button.setBackgroundResource(R.drawable.ic_favorite_red_24);
         } else {
-            holder.button.setBackground(Drawable.createFromPath("@drawable/ic_favorite_shadow_24"));
+            holder.button.setBackgroundResource(R.drawable.ic_favorite_shadow_24);
         }
         Picasso.get()
                 .load(travel.getImage())
@@ -57,7 +66,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
         return travelList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textView;
         public ImageView imageView;
@@ -65,9 +74,79 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             button=itemView.findViewById(R.id.itemFavoriteButton);
             textView=itemView.findViewById(R.id.itemTextView);
             imageView=itemView.findViewById(R.id.itemImageView);
+            imageView.setOnClickListener(view -> {
+
+            });
+            button.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                Travel travel = travelList.get(position);
+
+                likeClick(travel, button, position);
+            });
         }
     }
+
+    private void likeClick(Travel travel, Button button, int position){
+        SharedPreferences sharedPreferences = this.context.getSharedPreferences("MyPreferences",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("mytravels", null);
+        Type type = new TypeToken<ArrayList<Travel>>() {}.getType();
+        List<Travel> travels = gson.fromJson(json, type);
+        if (travels == null){
+            travels = new ArrayList<Travel>();
+        }
+
+        if(travel.getFavorite()){
+            button.setBackgroundResource(R.drawable.ic_favorite_shadow_24);
+            travel.setFavorite(false);
+            for (int i = 0; i < travels.size(); i++) {
+                Travel currentTravel = travels.get(i);
+                if(currentTravel.getKey().equals(travel.getKey())){
+                    travels.remove(position);
+                    if(!global){
+                        travelList.remove(position);
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position,travelList.size());
+                    }
+                    break;
+                }
+            }
+        }else{
+            button.setBackgroundResource(R.drawable.ic_favorite_red_24);
+            travel.setFavorite(true);
+            travels.add(travel);
+        }
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson favoriteList = new Gson();
+        String result = favoriteList.toJson(travels);
+        editor.putString("mytravels",result);
+
+        if(global){
+            Gson currentList = new Gson();
+            String currentResult = currentList.toJson(travelList);
+            editor.putString("travels", currentResult);
+        }else{
+            String globalJson = sharedPreferences.getString("travels", null);
+            Type globalType = new TypeToken<ArrayList<Travel>>() {}.getType();
+            List<Travel> globalTravels = gson.fromJson(globalJson, globalType);
+
+            for(int i = 0; i < globalTravels.size(); i++){
+                Travel currentTravel = globalTravels.get(i);
+                if(currentTravel.getKey().equals(travel.getKey())){
+                    currentTravel.setFavorite(travel.getFavorite());
+                    break;
+                }
+            }
+            Gson globalList = new Gson();
+            String globalResult = globalList.toJson(globalTravels);
+            editor.putString("travels", globalResult);
+        }
+        editor.apply();
+    }
+
 }
