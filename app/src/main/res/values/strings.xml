@@ -22,4 +22,5 @@
     <string name="max_price_edit_text">9999</string>
     <string name="apply_filter_button">Filtrar</string>
     <string name="cancel_filter_button">Cancelar</string>
+    <string name="buyButton">Comprar Viaje</string>
 </resources>

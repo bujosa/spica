@@ -2,25 +2,22 @@ package com.bujosa.spica;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import com.bujosa.spica.entity.Travel;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TravelDetailActivity extends AppCompatActivity {
 
     TextView title, secondTitle, description, location, price, startDate, endDate;
     ImageView imageView;
+    Button buyButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +34,7 @@ public class TravelDetailActivity extends AppCompatActivity {
         location = findViewById(R.id.detailLocationTextView);
         startDate = findViewById(R.id.detailStartDateTextView);
         endDate = findViewById(R.id.detailEndDateTextView);
+        buyButton = findViewById(R.id.buyButton);
 
         String priceResult = "" + travel.getPrice();
         Picasso.get()
@@ -52,6 +50,13 @@ public class TravelDetailActivity extends AppCompatActivity {
         location.setText(travel.getPlace());
         startDate.setText(travel.getStartDate());
         endDate.setText(travel.getEndDate());
+        buyButton.setOnClickListener(view -> {
+            Toast toast = Toast.makeText(this,"Haz comprado este viaje", Toast.LENGTH_LONG);
+            toast.show();
+            SystemClock.sleep(2000);
+            startActivity(new Intent(this,
+                    MainActivity.class));
+        });
 
     }
 }

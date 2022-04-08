@@ -13,11 +13,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.splashScreenTheme);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(new Intent(SplashScreenActivity.this,MainActivity.class));
-            }
-        },2000);
+        new Handler().postDelayed(() -> startActivity(new Intent(SplashScreenActivity.this,
+                MainActivity.class)),2000);
     }
 }

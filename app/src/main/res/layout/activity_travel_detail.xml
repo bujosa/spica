@@ -152,6 +152,16 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/date_end"
                 android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#009688"
+                android:layout_marginBottom="20dp"
+                android:elevation="10dp"
+                android:text="@string/buyButton" />
+
         </LinearLayout>
 
     </ScrollView>

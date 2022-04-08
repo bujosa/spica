@@ -3,7 +3,6 @@ package com.bujosa.spica;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.widget.GridView;
 
 import com.bujosa.spica.adapter.MenuAdapter;

@@ -1,10 +1,8 @@
 package com.bujosa.spica;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,7 +26,6 @@ public class TravelActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageButton imageButton;
     private List<Travel> travels;
-    private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private int minPrice = 0, maxPrice = 9999;
 
@@ -47,23 +44,19 @@ public class TravelActivity extends AppCompatActivity {
         Type type = new TypeToken<ArrayList<Travel>>() {}.getType();
         travels = gson.fromJson(json, type);
 
-        imageButton.setOnClickListener(view -> {
-          showDialog();
-        });
+        imageButton.setOnClickListener(view -> showDialog());
         changesRecycleView();
     }
 
     public void showDialog(){
-        dialogBuilder = new AlertDialog.Builder(this);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         final View filterView = getLayoutInflater().inflate(R.layout.popup, null);
         EditText minPriceFilter = filterView.findViewById(R.id.minPriceEditText);
         EditText maxPriceFilter = filterView.findViewById(R.id.maxPriceEditText);
         Button filterButton = filterView.findViewById(R.id.applyFilterButton);
         Button cancelButton = filterView.findViewById(R.id.cancelFilterButton);
 
-        cancelButton.setOnClickListener(view -> {
-            dialog.cancel();
-        });
+        cancelButton.setOnClickListener(view -> dialog.cancel());
 
         filterButton.setOnClickListener(view -> {
             dialog.hide();
