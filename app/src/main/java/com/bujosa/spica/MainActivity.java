@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bujosa.spica.entity.Menu;
+import com.bujosa.spica.entity.Travel;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -27,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_Spica);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE );
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(Travel.generateTravels());
+        editor.putString("travels",json);
+        editor.apply();
+
         gridView = findViewById(R.id.gridView);
         gridView.setAdapter(new MenuAdapter(Menu.generateMenu(), this));
     }

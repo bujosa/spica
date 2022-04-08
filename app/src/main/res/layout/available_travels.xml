@@ -29,11 +29,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginBottom="7dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="15dp"
+            android:layout_marginBottom="7dp"
             android:layout_weight="1"
-            android:backgroundTint="#000000"
+            android:backgroundTint="#292424"
             android:contentDescription="@string/search"
             android:elevation="30dp"
             app:srcCompat="@android:drawable/ic_menu_search" />

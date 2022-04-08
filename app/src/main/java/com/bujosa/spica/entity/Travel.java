@@ -1,4 +1,5 @@
 package com.bujosa.spica.entity;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.bujosa.spica.MainActivity;
@@ -110,8 +111,13 @@ public class Travel {
         travels.add(new Travel("Puerto Rico un lugar que no te puedes perder", 2500, "San Juan",
                 "2022-04-09", "2022-04-11", "Hotel Columbia", "2", false,
                 "https://riosmauricio.com/wp-content/uploads/2021/06/Puerto-Rico-una-de-las-mejores-jurisdicciones-para-proteger-activos.jpeg"  ));
+        travels.add(new Travel("Colombia un Lugar de buenas playas", 3000, "Colombia",
+                "2022-05-10", "2022-05-14", "Hotel el Dorado", "3", false,
+                "https://i0.wp.com/diariolalibertad.com/sitio/wp-content/uploads/2020/11/Cartagena.jpg"  ));
+        travels.add(new Travel("Cuba zona turistica", 3000, "Colombia",
+                "2022-05-11", "2022-05-13", "Playa Celeste", "4", false,
+                "https://i.pinimg.com/564x/35/78/de/3578dec1e21e9f6ea1ba3a75bfc8205a.jpg"  ));
 
-        Log.i("Hola", "" + travels.size());
         return travels;
     }
 }

@@ -12,7 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Spica">
         <activity
+            android:name=".TravelDetail"
+            android:exported="false" />
+        <activity
             android:name=".TravelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FavoritesListTravelActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
